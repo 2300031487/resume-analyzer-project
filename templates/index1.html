@@ -1,0 +1,282 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Job Matcher - Level 1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4e73df, #1cc88a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 600px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #2e59d9;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fc;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Resume – Job Matching System</h2>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Job Description:</label><br>
+        <textarea name="job_description" rows="4" required>{{ request.form.job_description }}</textarea><br><br>
+
+        <label>Resume Text:</label><br>
+        <textarea name="resume_text" rows="4" required>{{ request.form.resume_text }}</textarea><br>
+
+        <button type="submit">Check Match</button>
+
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <h3>Result</h3>
+            <p><b>Match Percentage:</b> {{ result.percentage }}%</p>
+            <p><b>Matched Skills:</b> {{ result.matched if result.matched else "None" }}</p>
+            <p><b>Missing Skills:</b> {{ result.missing if result.missing else "None" }}</p>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Job Matcher - Level 1</title>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4e73df, #1cc88a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 0;
+    margin: 0;
+}
+
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 600px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2e59d9;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fc;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 25px;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #1cc88a;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            font-weight: bold;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Skill badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px 5px 0 0;
+            font-size: 13px;
+            color: white;
+        }
+
+        .matched {
+            background-color: #28a745;
+        }
+
+        .missing {
+            background-color: #dc3545;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Resume – Job Matching System</h2>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Job Description:</label><br>
+        <textarea name="job_description" rows="4" required>{{ request.form.job_description }}</textarea><br><br>
+
+        <label>Resume Text:</label><br>
+        <textarea name="resume_text" rows="4" required>{{ request.form.resume_text }}</textarea><br>
+
+        <button type="submit">Check Match</button>
+
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>Result</h3>
+
+        <p><b>Match Percentage:</b> {{ result.percentage }}%</p>
+
+        <div class="progress-container">
+            <div class="progress-bar" style="width: {{ result.percentage }}%;">
+                {{ result.percentage }}%
+            </div>
+        </div>
+
+        <p><b>Matched Skills:</b></p>
+        {% if result.matched %}
+            {% for skill in result.matched %}
+                <span class="badge matched">{{ skill }}</span>
+            {% endfor %}
+        {% else %}
+            <span>None</span>
+        {% endif %}
+
+        <br><br>
+
+        <p><b>Missing Skills:</b></p>
+        {% if result.missing %}
+            {% for skill in result.missing %}
+                <span class="badge missing">{{ skill }}</span>
+            {% endfor %}
+        {% else %}
+            <span>None</span>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
