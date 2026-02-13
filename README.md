@@ -1,13 +1,12 @@
-# resume-analyzer-project
+# Resume Job Matching System Level 1
+
 Resume Analyzer - Level 1 Basic
 
+Resume Skill Matching System
 
-🚀 Resume Skill Matching System
-🔍 A Flask-Based ATS Simulation
+A Flask-Based ATS Simulation
 
-
-
-📌 Overview
+Overview
 
 This project is a Resume–Job Description Matching System built using Python and Flask.
 
@@ -21,23 +20,21 @@ Calculating a match percentage
 
 Displaying matched and missing skills visually
 
-
-🎯 Problem Statement
+Problem Statement
 
 Recruiters often receive hundreds of resumes for a single job posting.
 
-Manual screening:
+Manual screening is:
 
-⏳ Time-consuming
+Time-consuming
 
-❌ Error-prone
+Error-prone
 
-📉 Inconsistent
+Inconsistent
 
 This system automates skill comparison using structured keyword evaluation.
 
-
-🧠 How the System Works
+How the System Works
 User Input (JD + Resume)
         ↓
 Skill Extraction (Regex Engine)
@@ -48,8 +45,7 @@ Score Calculation
         ↓
 Visual Result Display
 
-
-🏗 Project Architecture
+Project Architecture
 resumechecker/
 │
 ├── app1.py               # Flask controller
@@ -60,9 +56,7 @@ resumechecker/
 └── templates/
     └── index.html        # UI
 
-
-⚙️ Internal Working (Step-by-Step)
-
+Internal Working (Step-by-Step)
 1️⃣ Skill Definition (skills1.py)
 
 Defines evaluation criteria:
@@ -105,10 +99,9 @@ pattern = r'\b' + escaped_skill + r'\b'
 
 Prevents:
 
-❌ "c" matching inside "machine"
+"c" matching inside "machine"
 
-❌ "java" matching inside "javascript"
-
+"java" matching inside "javascript"
 
 3️⃣ Score Calculation (score_calculator.py)
 match_percentage = (matched / total_required) * 100
@@ -122,9 +115,7 @@ Returns:
   "missing": [...]
 }
 
-
 4️⃣ Flask Application (app1.py)
-
 
 Handles:
 
@@ -138,11 +129,13 @@ Score calculation
 
 Result rendering
 
-📊 Example
+Example
 Job Description
+
 Looking for Python developer with SQL and NLP skills.
 
 Resume
+
 Experienced in Python and SQL.
 
 Output
@@ -150,20 +143,19 @@ Metric	Result
 Match Percentage	66.67%
 Matched Skills	python, sql
 Missing Skills	nlp
-🎨 UI Features
+UI Features
 
-🌈 Gradient background
+Gradient background
 
-📊 Animated progress bar
+Animated progress bar
 
-🟢 Matched skill badges
+Matched skill badges
 
-🔴 Missing skill badges
+Missing skill badges
 
-🧱 Clean modular design
+Clean modular design
 
-
-▶️ How to Run
+How to Run
 pip install flask
 python app1.py
 
@@ -172,7 +164,7 @@ Open in browser:
 
 http://127.0.0.1:5000/
 
-🚧 Current Limitations
+Current Limitations
 
 Keyword-based only
 
@@ -182,35 +174,33 @@ No semantic similarity
 
 No experience weighting
 
-
-🔮 Roadmap
-✅ Level 1
+Roadmap
+Level 1
 
 Keyword-based matching (Completed)
 
-🔄 Level 2
+Level 2
 
 PDF Resume Upload
 
-🧠 Level 3
+Level 3
 
 Synonym & Semantic Matching
 
-📈 Level 4
+Level 4
 
 Experience-weighted ranking
 
-# 👨‍💻 Author
-
+# Author
 # BANDARU CHARAN
 B.Tech Computer Science
 
-🔥 This Version Includes
+This Version Includes
 
-✔ Code highlighting
-✔ Proper markdown structure
-✔ Visual badges
-✔ Tables
-✔ Emojis
-✔ Clean formatting
-✔ Recruiter-friendly tone
+Code highlighting
+
+Proper markdown structure
+
+Clean formatting
+
+Recruiter-friendly tone
